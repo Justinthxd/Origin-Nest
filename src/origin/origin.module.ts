@@ -1,9 +1,14 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { OriginController } from './origin.controller';
 import { OriginService } from './origin.service';
+import { logger } from 'src/middlewares/logger.middleware';
 
 @Module({
   controllers: [OriginController],
-  providers: [OriginService]
+  providers: [OriginService],
 })
-export class OriginModule {}
+export class OriginModule {
+  // configure(consumer: MiddlewareConsumer) {
+  //   consumer.apply(logger).forRoutes('origin');
+  // }
+}
