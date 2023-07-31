@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { OriginModule } from './origin/origin.module';
+import { LoginModule } from './login/login.module';
 
 @Module({
-  imports: [OriginModule],
+  imports: [OriginModule, LoginModule],
   controllers: [],
   providers: [],
 })
