@@ -28,6 +28,6 @@ async function bootstrap() {
   await app.listen(3000);
 
   console.log('');
-  console.log('\x1b[31m%s\x1b[0m', text);
+  console.log('\x1b[34m%s\x1b[0m', text);
 }
 bootstrap();
