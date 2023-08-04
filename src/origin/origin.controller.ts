@@ -1,21 +1,27 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
-import { OriginService } from './origin.service';
 import { Note } from './origin.models';
-import { ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('origin')
 @Controller('origin')
 export class OriginController {
-  constructor(private service: OriginService) {}
-
-  @UseGuards(AuthGuard)
+  @ApiBearerAuth('token')
+  @UseGuards(JwtAuthGuard)
   @Get('get-notes')
+  @ApiResponse({ status: 200, description: 'Get notes' })
+  @ApiBadRequestResponse({ status: 400, description: 'Bad request' })
   getNotes() {
     return 'Notes';
   }
 
-  @UseGuards(AuthGuard)
+  @ApiBearerAuth('token')
+  @UseGuards(JwtAuthGuard)
   @Post('insert-note')
   insertNote(@Body() note: Note) {
     return note;

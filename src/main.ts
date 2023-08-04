@@ -12,6 +12,12 @@ async function bootstrap() {
     .setDescription('The ORIGIN API description')
     .setVersion('1.0')
     .addTag('origin')
+    .addBearerAuth(
+      {
+        type: 'http',
+      },
+      'token',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

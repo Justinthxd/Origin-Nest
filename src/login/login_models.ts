@@ -16,3 +16,19 @@ export class User {
   @ApiProperty({ enum: ['IN_PROGRESS', 'PENDING', 'DONE'] })
   status: UserStatus;
 }
+
+export class LoginResponse {
+  @ApiProperty()
+  access_token: string;
+}
+
+export class ErrorResponse {
+  @ApiProperty({ required: false })
+  statusCode: number;
+
+  @ApiProperty({ required: false })
+  message: string;
+
+  @ApiProperty({ required: false })
+  error: string;
+}
